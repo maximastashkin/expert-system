@@ -9,5 +9,4 @@ public interface Rule {
     Optional<Variable> apply(List<Variable> variables);
     String getOutputVariableName();
     List<String> getInputVariableNames();
-    boolean isApplied();
 }

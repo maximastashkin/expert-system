@@ -13,7 +13,6 @@ import java.util.Optional;
 public class Rule11 extends AbstractRule {
     @Override
     public Optional<Variable> apply(List<Variable> variables) {
-        super.apply(variables);
         String strength = extractValue(variables, AlcoholVariable.STRENGTH.getName());
         String price = extractValue(variables, AlcoholVariable.PRICE.getName());
         if (strength.equals(StrengthValue.MEDIUM.getName()) && price.equals(PriceValue.EXPENSIVE.getName())) {

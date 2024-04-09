@@ -13,7 +13,6 @@ import java.util.Optional;
 public class Rule10 extends AbstractRule {
     @Override
     public Optional<Variable> apply(List<Variable> variables) {
-        super.apply(variables);
         String strength = extractValue(variables, AlcoholVariable.STRENGTH.getName());
         if (strength.equals(StrengthValue.LOW.getName())) {
             return Optional.of(new Variable(AlcoholVariable.DRINK.getName(), DrinkValue.BEER.getName()));

@@ -14,7 +14,6 @@ import java.util.Optional;
 public class Rule15 extends AbstractRule {
     @Override
     public Optional<Variable> apply(List<Variable> variables) {
-        super.apply(variables);
         String strength = extractValue(variables, AlcoholVariable.STRENGTH.getName());
         String price = extractValue(variables, AlcoholVariable.PRICE.getName());
         String taste = extractValue(variables, AlcoholVariable.TASTE.getName());

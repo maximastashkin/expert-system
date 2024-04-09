@@ -12,7 +12,6 @@ import java.util.Optional;
 public class Rule5 extends AbstractRule {
     @Override
     public Optional<Variable> apply(List<Variable> variables) {
-        super.apply(variables);
         int money = Integer.parseInt(extractValue(variables, AlcoholVariable.MONEY.getName()));
         if (money < 1000) {
             return Optional.of(new Variable(AlcoholVariable.PRICE.getName(), PriceValue.CHEAP.getName()));
