@@ -14,8 +14,8 @@ public class Rule11 extends AbstractRule {
     @Override
     public Optional<Variable> apply(List<Variable> variables) {
         super.apply(variables);
-        String strength = extractValue(variables, AlcoholVariable.STRENGTH);
-        String price = extractValue(variables, AlcoholVariable.PRICE);
+        String strength = extractValue(variables, AlcoholVariable.STRENGTH.getName());
+        String price = extractValue(variables, AlcoholVariable.PRICE.getName());
         if (strength.equals(StrengthValue.MEDIUM.getName()) && price.equals(PriceValue.EXPENSIVE.getName())) {
             return Optional.of(new Variable(AlcoholVariable.DRINK.getName(), DrinkValue.LIQUOR.getName()));
         }

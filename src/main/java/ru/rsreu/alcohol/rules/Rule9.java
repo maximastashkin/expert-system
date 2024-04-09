@@ -12,8 +12,8 @@ public class Rule9 extends AbstractRule {
     @Override
     public Optional<Variable> apply(List<Variable> variables) {
         super.apply(variables);
-        int money = Integer.parseInt(extractValue(variables, AlcoholVariable.MONEY));
-        int people = Integer.parseInt(extractValue(variables, AlcoholVariable.PEOPLE));
+        int money = Integer.parseInt(extractValue(variables, AlcoholVariable.MONEY.getName()));
+        int people = Integer.parseInt(extractValue(variables, AlcoholVariable.PEOPLE.getName()));
         if (money > 5000 && people <= 5) {
             return Optional.of(new Variable(AlcoholVariable.PRICE.getName(), PriceValue.EXPENSIVE.getName()));
         }

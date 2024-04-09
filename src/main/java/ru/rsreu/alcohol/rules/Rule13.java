@@ -15,9 +15,9 @@ public class Rule13 extends AbstractRule {
     @Override
     public Optional<Variable> apply(List<Variable> variables) {
         super.apply(variables);
-        String strength = extractValue(variables, AlcoholVariable.STRENGTH);
-        String price = extractValue(variables, AlcoholVariable.PRICE);
-        String taste = extractValue(variables, AlcoholVariable.TASTE);
+        String strength = extractValue(variables, AlcoholVariable.STRENGTH.getName());
+        String price = extractValue(variables, AlcoholVariable.PRICE.getName());
+        String taste = extractValue(variables, AlcoholVariable.TASTE.getName());
         if (strength.equals(StrengthValue.MEDIUM.getName())
                 && price.equals(PriceValue.MEDIUM.getName())
                 && taste.equals(TasteValue.NOT_IMPORTANT.getName())) {

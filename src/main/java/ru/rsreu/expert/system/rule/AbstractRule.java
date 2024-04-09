@@ -21,11 +21,11 @@ public abstract class AbstractRule implements Rule {
         return this.applied;
     }
 
-    protected String extractValue(List<Variable> variables, AlcoholVariable variable) {
+    protected String extractValue(List<Variable> variables, String name) {
         return variables.stream()
-                .filter(it -> it.getName().equals(variable.getName()))
+                .filter(it -> it.getName().equals(name))
                 .findFirst()
                 .map(Variable::getValue)
-                .orElseThrow(() -> new NoSuchVariableException(variable.getName()));
+                .orElseThrow(() -> new NoSuchVariableException(name));
     }
 }
