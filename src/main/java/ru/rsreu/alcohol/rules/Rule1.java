@@ -14,7 +14,7 @@ public class Rule1 extends AbstractRule {
     public Optional<Variable> apply(List<Variable> variables) {
         String effect = extractValue(variables, AlcoholVariable.EFFECT.getName());
         int people = Integer.parseInt(extractValue(variables, AlcoholVariable.PEOPLE.getName()));
-        if (effect.equals(EffectValue.STRONG.getName()) && people > 5) {
+        if (effect.equals(EffectValue.STRONG.getName()) || people > 5) {
             return Optional.of(new Variable(AlcoholVariable.STRENGTH.getName(), StrengthValue.HIGH.getName()));
         }
         return Optional.empty();
