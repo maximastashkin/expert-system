@@ -91,7 +91,7 @@ public class FunctionalAlcoholExpertSystem {
                 FunctionalRule.of(
                         List.of(MONEY, PEOPLE),
                         variables -> (Integer) variables.get(AlcoholVariable.MONEY) >= 1000 &&
-                                (Integer) variables.get(AlcoholVariable.MONEY) < 5000 &&
+                                (Integer) variables.get(AlcoholVariable.MONEY) <= 5000 &&
                                 (Integer) variables.get(AlcoholVariable.PEOPLE) <= 5,
                         VariableValue.of(PRICE, PriceValue.MEDIUM)
                 ),
@@ -166,6 +166,6 @@ public class FunctionalAlcoholExpertSystem {
     public void start() {
         Engine engine = new Engine(provideContext());
         Variable drink = engine.process(inputVariables(), rules(), AlcoholVariable.DRINK.name());
-        System.out.println(drink.getValue());
+        System.out.println(DrinkValue.valueOf(drink.getValue()).getName());
     }
 }
