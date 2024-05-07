@@ -1,5 +1,9 @@
 package ru.rsreu.expert.system.front.func;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.RequiredArgsConstructor;
 import ru.rsreu.expert.system.data.Variable;
 import ru.rsreu.expert.system.rule.AbstractRule;
@@ -9,18 +13,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class FunctionalRule<T extends Enum<T>> extends AbstractRule {
     private final List<VariableDefinition<T>> inputVariableDefinitions;
     private final Predicate<Map<T, Object>> predicate;
     private final VariableValue<T, Object> outputVariableValue;
+    private final String ruleDescription;
 
-    public static <T extends Enum<T>> FunctionalRule<T> of(List<VariableDefinition<T>> inputVariableDefinitions,
-                                                           Predicate<Map<T, Object>> predicate,
-                                                           VariableValue<T, Object> outputVariableValue) {
-        return new FunctionalRule<>(inputVariableDefinitions, predicate, outputVariableValue);
+    @JsonCreator
+    public static <T extends Enum<T>> FunctionalRule<T> of(
+            @JsonProperty("ruleDescription") String ruleDescription,
+            @JsonProperty("inputVariableDefinitions") List<VariableDefinition<T>> inputVariableDefinitions,
+            @JsonProperty("predicate") Predicate<Map<T, Object>> predicate,
+            @JsonProperty("outputVariableValue") VariableValue<T, Object> outputVariableValue) {
+        return new FunctionalRule<>(inputVariableDefinitions, predicate, outputVariableValue, ruleDescription);
     }
 
     @Override
@@ -45,16 +52,23 @@ public class FunctionalRule<T extends Enum<T>> extends AbstractRule {
     }
 
     @Override
+    @JsonIgnore
     public String getOutputVariableName() {
         return outputVariableValue.getDefinition().getVariableName().name();
     }
 
     @Override
+    @JsonIgnore
     public List<String> getInputVariableNames() {
-        return inputVariableDefinitions
-                .stream()
+        return inputVariableDefinitions.stream()
                 .map(VariableDefinition::getVariableName)
                 .map(Enum::name)
-                .collect(Collectors.toList());
+                .toList();
+    }
+
+    @JsonSerialize
+    @Override
+    public String getRuleDescription() {
+        return ruleDescription;
     }
 }

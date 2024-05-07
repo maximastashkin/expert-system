@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Система подбора алкогольных напитков</h1>
+    <form th:action="@{/process}" th:object="${inputForm}" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="tasteSelect">Вкусовые предпочтения</label>
+                <select th:field="*{taste}" id="tasteSelect" class="form-control">
+                    <option value="">--Не указано--</option>
+                    <option th:each="tasteValue : ${T(ru.rsreu.alcohol.enums.values.TasteValue).values()}"
+                            th:value="${tasteValue}"
+                            th:text="${tasteValue.getName()}"></option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="effectSelect">Желаемый эффект</label>
+                <select th:field="*{effect}" id="effectSelect" class="form-control">
+                    <option value="">--Не указано--</option>
+                    <option th:each="effectValue : ${T(ru.rsreu.alcohol.enums.values.EffectValue).values()}"
+                            th:value="${effectValue}"
+                            th:text="${effectValue.getName()}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="peopleInput">Количество человек</label>
+                <input th:field="*{people}" type="number" class="form-control" placeholder="--Не указано--"
+                       id="peopleInput">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="moneyInput">Бюджет в рублях</label>
+                <input th:field="*{money}" type="number" class="form-control" placeholder="--Не указано--"
+                       id="moneyInput">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+        <a th:href="@{/get-form}" class="btn btn-primary">Сбросить</a>
+    </form>
+    <div class="container" th:if="${result != null}">
+        <div class="row align-items-start">
+            <div class="col">
+                <h2>Переменные в рабочей памяти:</h2>
+                <p th:each="variable : ${result.variables}" th:text="${variable}"></p>
+            </div>
+            <div class="col">
+                <h2>Сработавшие правила:</h2>
+                <p th:each="rule : ${result.rules}" th:text="${rule}"></p>
+            </div>
+        </div>
+        <div th:if="${result.result} != null">
+            <h2>Результат вывода: </h2>
+            <h3 th:text="${result.result}"></h3>
+        </div>
+        <div th:if="${result.result == null}">
+            <h2 style="color: red">Не удалось вывести выходную переменную при указанных входных данных</h2>
+        </div>
+    </div>
+</div>
+</body>
+</html>

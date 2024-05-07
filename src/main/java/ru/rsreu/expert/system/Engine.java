@@ -1,9 +1,9 @@
 package ru.rsreu.expert.system;
 
 import lombok.RequiredArgsConstructor;
-import ru.rsreu.expert.system.exception.ImpossibleToCalculateTarget;
 import ru.rsreu.expert.system.data.Context;
 import ru.rsreu.expert.system.data.Variable;
+import ru.rsreu.expert.system.exception.ImpossibleToCalculateTarget;
 import ru.rsreu.expert.system.rule.Rule;
 
 import java.util.ArrayList;
@@ -38,6 +38,7 @@ public class Engine {
         List<Rule> rulesCopy = new ArrayList<>(rules);
         rules.forEach(it -> {
             if (applyFromContextIfPossible(it)) {
+                context.addRuleDescription(it);
                 rulesCopy.remove(it);
             }
         });
