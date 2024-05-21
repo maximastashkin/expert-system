@@ -29,7 +29,7 @@ public class ProcessController {
     private static final String RESULT_MODEL_ATTRIBUTE_NAME = "result";
     private final PersistenceStorage persistenceStorage;
 
-    @GetMapping("/get-form")
+    @GetMapping("/")
     public String getForm(Model model) {
         model.addAttribute(FORM_MODEL_ATTRIBUTE_NAME, new InputFormDto());
         return "inputForm";

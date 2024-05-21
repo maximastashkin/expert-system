@@ -10,6 +10,13 @@
 </head>
 <body>
 <div class="container">
+    <a class="btn btn-outline-primary" th:href="@{/}">Форма</a>
+    <a class="btn btn-outline-primary" th:href="@{/history}">История сеансов</a>
+    <a class="btn btn-outline-primary" th:href="@{/benchmark}">Оценка системы</a>
+</div>
+<br>
+<br>
+<div class="container">
     <h1>Система подбора алкогольных напитков</h1>
     <form th:action="@{/process}" th:object="${inputForm}" method="post">
         <div class="form-row">
@@ -45,7 +52,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Отправить</button>
-        <a th:href="@{/get-form}" class="btn btn-primary">Сбросить</a>
+        <a th:href="@{/}" class="btn btn-primary">Сбросить</a>
     </form>
     <div class="container" th:if="${result != null}">
         <div class="row align-items-start">
