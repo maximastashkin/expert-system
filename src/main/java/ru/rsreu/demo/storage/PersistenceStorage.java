@@ -6,6 +6,7 @@ import lombok.SneakyThrows;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.rsreu.alcohol.CacheContext;
+import ru.rsreu.demo.benchmark.TestCase;
 import ru.rsreu.expert.system.data.Context;
 
 import java.util.List;
@@ -37,5 +38,9 @@ public class PersistenceStorage {
     @SneakyThrows
     private CacheContext deserializeCacheContext(String contextValue) {
         return OBJECT_MAPPER.readValue(contextValue, CacheContext.class);
+    }
+
+    public void saveBenchmarkResult(List<TestCase> testCases) {
+
     }
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Оценка системы</h1>
+    <br>
+    <br>
+    <div class="container">
+        <table class="table table-bordered">
+            <tr>
+                <th>Желаемый эффект</th>
+                <th>Вкусовые предпочтения</th>
+                <th>Бюджет</th>
+                <th>Количество человек</th>
+                <th>Напиток</th>
+            </tr>
+            <tbody>
+            <tr th:each="testCase : ${testCases}">
+                <td><span th:if="${testCase.getEffectValue()}!= null"
+                          th:text="${testCase.getEffectValue().getName()}"></span>
+                    <span th:if="${testCase.getEffectValue()} == null">-</span></td>
+                <td><span th:if="${testCase.getTasteValue()}!= null"
+                          th:text="${testCase.getTasteValue().getName()}"></span>
+                    <span th:if="${testCase.getTasteValue()} == null">-</span></td>
+                <td><span th:if="${testCase.getMoney()}!= null"
+                          th:text="${testCase.getMoney()}"></span>
+                    <span th:if="${testCase.getMoney()} == null">-</span></td>
+                <td><span th:if="${testCase.getPeople()}!= null"
+                          th:text="${testCase.getPeople()}"></span>
+                    <span th:if="${testCase.getPeople()} == null">-</span></td>
+                <td><span th:if="${testCase.getDrinkValue()}!= null"
+                          th:text="${testCase.getDrinkValue().getName()}"></span>
+                    <span th:if="${testCase.getDrinkValue()} == null">-</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

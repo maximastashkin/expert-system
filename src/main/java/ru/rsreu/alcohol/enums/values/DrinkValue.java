@@ -11,7 +11,8 @@ public enum DrinkValue {
     CHAMPAIGN("Шампанское"),
     LIQUOR("Ликер"),
     VODKA("Водка"),
-    COGNAC("Коньяк");
+    COGNAC("Коньяк"),
+    BORMUTUHA("Самогонка");
 
     private final String name;
 }

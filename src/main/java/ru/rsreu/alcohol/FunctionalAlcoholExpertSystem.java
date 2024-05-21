@@ -53,9 +53,9 @@ public class FunctionalAlcoholExpertSystem {
     public static List<Rule> rules() {
         return List.of(
                 FunctionalRule.of(
-                        "1. ЕСЛИ Желаемый эффект = сильно ИЛИ Количество человек > 5, ТО Крепость = сильная",
+                        "1. ЕСЛИ Желаемый эффект = сильно И Количество человек > 5, ТО Крепость = сильная",
                         List.of(EFFECT, PEOPLE),
-                        variables -> variables.get(AlcoholVariable.EFFECT) == EffectValue.STRONG ||
+                        variables -> variables.get(AlcoholVariable.EFFECT) == EffectValue.STRONG &&
                                 (Integer) variables.get(AlcoholVariable.PEOPLE) > 5,
                         VariableValue.of(STRENGTH, StrengthValue.HIGH)
                 ),
@@ -159,6 +159,13 @@ public class FunctionalAlcoholExpertSystem {
                                 !(variables.get(AlcoholVariable.PRICE) == PriceValue.EXPENSIVE ||
                                         variables.get(AlcoholVariable.TASTE) == TasteValue.IMPORTANT),
                         VariableValue.of(DRINK, DrinkValue.VODKA)
+                ),
+                FunctionalRule.of(
+                        "16. ЕСЛИ Крепость = средняя И Цена = низкая, ТО Напиток = Самогонка",
+                        List.of(STRENGTH, PRICE),
+                        variables -> variables.get(AlcoholVariable.STRENGTH) == StrengthValue.MEDIUM &&
+                                variables.get(AlcoholVariable.PRICE) == PriceValue.CHEAP,
+                        VariableValue.of(DRINK, DrinkValue.BORMUTUHA)
                 )
         );
     }
