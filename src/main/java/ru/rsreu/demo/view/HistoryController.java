@@ -12,6 +12,7 @@ import ru.rsreu.expert.system.data.Context;
 import ru.rsreu.expert.system.data.Variable;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class HistoryController {
     @GetMapping("/history")
     public String getContextsHistory(Model model) {
         List<? extends Context> contexts = persistenceStorage.getAllContexts();
-        List<ResultDto> results = contexts.stream().map(this::prepareResultDto).toList();
+        List<ResultDto> results = contexts.stream().map(this::prepareResultDto).collect(Collectors.toList());
         model.addAttribute(RESULTS_MODEL_ATTRIBUTE_NAME, results);
         return "history";
     }

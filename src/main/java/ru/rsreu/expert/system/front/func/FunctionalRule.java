@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class FunctionalRule<T extends Enum<T>> extends AbstractRule {
@@ -63,7 +64,7 @@ public class FunctionalRule<T extends Enum<T>> extends AbstractRule {
         return inputVariableDefinitions.stream()
                 .map(VariableDefinition::getVariableName)
                 .map(Enum::name)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @JsonSerialize

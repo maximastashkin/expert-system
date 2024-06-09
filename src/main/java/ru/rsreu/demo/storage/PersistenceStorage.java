@@ -10,6 +10,7 @@ import ru.rsreu.demo.benchmark.TestCase;
 import ru.rsreu.expert.system.data.Context;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -32,7 +33,7 @@ public class PersistenceStorage {
                 "select * from context",
                 (rs, rowNum) -> rs.getString(1)
         );
-        return contextsValues.stream().map(this::deserializeCacheContext).toList();
+        return contextsValues.stream().map(this::deserializeCacheContext).collect(Collectors.toList());
     }
 
     @SneakyThrows

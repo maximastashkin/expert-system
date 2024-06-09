@@ -9,6 +9,7 @@ import ru.rsreu.expert.system.data.Variable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ViewPrettyVariablesUtils {
@@ -23,7 +24,7 @@ public class ViewPrettyVariablesUtils {
                             .getConverter();
                     return prepareVariableString(variable, variableValueConverter);
                 })
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public static String prepareVariableString(Variable variable, Function<String, String> converter) {

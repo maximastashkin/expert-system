@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static ru.rsreu.alcohol.FunctionalAlcoholExpertSystem.provideContext;
 import static ru.rsreu.alcohol.FunctionalAlcoholExpertSystem.rules;
@@ -57,7 +58,7 @@ public class Benchmark {
                 return -1;
             }
             return 0;
-        }).toList();
+        }).collect(Collectors.toList());
 
         //.filter(testCase -> testCase.getDrinkValue() == null && testCase.getEffectValue() != null && testCase.getTasteValue() != null && testCase.getPeople() != null && testCase.getMoney() != null)
     }
