@@ -1,0 +1,18 @@
+2024-06-09 15:01:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CONTEXT" not found (this database is empty); SQL statement:
+select * from context [42104-214]
+2024-06-09 15:01:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CONTEXT" not found (this database is empty); SQL statement:
+insert into context values (?) [42104-214]
+2024-06-09 15:01:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CONTEXT" not found (this database is empty); SQL statement:
+insert into context values (?) [42104-214]
+2024-06-09 15:02:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CONTEXT" not found (this database is empty); SQL statement:
+insert into context values (?) [42104-214]
+2024-06-09 15:05:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CONTEXT" not found (this database is empty); SQL statement:
+select * from context [42104-214]
+2024-06-09 15:10:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CONTEXT" not found (this database is empty); SQL statement:
+select * from context [42104-214]
