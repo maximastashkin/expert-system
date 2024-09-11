@@ -3,7 +3,7 @@ package ru.rsreu.expert.system;
 import lombok.RequiredArgsConstructor;
 import ru.rsreu.expert.system.data.Context;
 import ru.rsreu.expert.system.data.Variable;
-import ru.rsreu.expert.system.exception.ImpossibleToCalculateTarget;
+import ru.rsreu.expert.system.exception.ImpossibleToCalculateTargetException;
 import ru.rsreu.expert.system.rule.Rule;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class Engine {
         int before = rules.size();
         int after = 0;
 
-        while (rules.size() > 0 && before > after) {
+        while (!rules.isEmpty() && before > after) {
             before = rules.size();
             rules = applyRules(rules);
             after = rules.size();
@@ -30,7 +30,7 @@ public class Engine {
         if (context.exists(targetVariable)) {
             return context.get(targetVariable);
         } else {
-            throw new ImpossibleToCalculateTarget(targetVariable);
+            throw new ImpossibleToCalculateTargetException(targetVariable);
         }
     }
 

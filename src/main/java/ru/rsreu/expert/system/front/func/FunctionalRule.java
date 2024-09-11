@@ -34,19 +34,19 @@ public class FunctionalRule<T extends Enum<T>> extends AbstractRule {
     public Optional<Variable> apply(List<Variable> variables) {
         Map<T, Object> predicateMap = new HashMap<>();
         inputVariableDefinitions.forEach(inputVariableDefinition -> {
-            String stringVariableValue = extractValue(variables, inputVariableDefinition.getVariableName().name());
-            Object variableObject = inputVariableDefinition.getValueStringFactory().apply(stringVariableValue);
+            String stringVariableValue = extractValue(variables, inputVariableDefinition.variableName().name());
+            Object variableObject = inputVariableDefinition.valueStringFactory().apply(stringVariableValue);
             VariableValue<T, Object> variableValue = new VariableValue<>(inputVariableDefinition, variableObject);
             predicateMap.put(
                     inputVariableDefinition
-                            .getVariableName()
+                            .variableName()
                             .getDeclaringClass()
-                            .cast(inputVariableDefinition.getVariableName()),
-                    variableValue.getValue()
+                            .cast(inputVariableDefinition.variableName()),
+                    variableValue.value()
             );
         });
         if (predicate.test(predicateMap)) {
-            return Optional.of(new Variable(getOutputVariableName(), outputVariableValue.getValue().toString()));
+            return Optional.of(new Variable(getOutputVariableName(), outputVariableValue.value().toString()));
         }
         return Optional.empty();
     }
@@ -54,14 +54,14 @@ public class FunctionalRule<T extends Enum<T>> extends AbstractRule {
     @Override
     @JsonIgnore
     public String getOutputVariableName() {
-        return outputVariableValue.getDefinition().getVariableName().name();
+        return outputVariableValue.definition().variableName().name();
     }
 
     @Override
     @JsonIgnore
     public List<String> getInputVariableNames() {
         return inputVariableDefinitions.stream()
-                .map(VariableDefinition::getVariableName)
+                .map(VariableDefinition::variableName)
                 .map(Enum::name)
                 .toList();
     }

@@ -5,10 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
-public class Variable {
-    private final String name;
-    private final String value;
-
+public record Variable(String name, String value) {
     @JsonCreator
     public Variable(@JsonProperty("name") String name, @JsonProperty("value") String value) {
         this.name = name;

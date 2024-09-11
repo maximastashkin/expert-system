@@ -45,13 +45,13 @@ public class CacheContext implements Context {
     @Override
     public boolean exists(String name) {
         return variables.stream()
-                .anyMatch(it -> name.equals(it.getName()));
+                .anyMatch(it -> name.equals(it.name()));
     }
 
     @Override
     public Variable get(String name) {
         return variables.stream()
-                .filter(it -> name.equals(it.getName()))
+                .filter(it -> name.equals(it.name()))
                 .findAny()
                 .orElseThrow(() -> new NoSuchVariableException(name));
     }
@@ -59,7 +59,7 @@ public class CacheContext implements Context {
     @Override
     public void add(Variable variable) {
         variables.stream()
-                .filter(it -> variable.getName().equals(it.getName()))
+                .filter(it -> variable.name().equals(it.name()))
                 .findAny()
                 .ifPresent(variables::remove);
         variables.add(variable);

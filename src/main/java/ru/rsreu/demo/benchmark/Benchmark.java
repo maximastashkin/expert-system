@@ -9,7 +9,7 @@ import ru.rsreu.alcohol.enums.values.TasteValue;
 import ru.rsreu.demo.storage.PersistenceStorage;
 import ru.rsreu.expert.system.Engine;
 import ru.rsreu.expert.system.data.Variable;
-import ru.rsreu.expert.system.exception.ImpossibleToCalculateTarget;
+import ru.rsreu.expert.system.exception.ImpossibleToCalculateTargetException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,8 +44,8 @@ public class Benchmark {
             try {
                 Variable drink = engine.process(inputVariables, rules(), AlcoholVariable.DRINK.name());
 
-                testCase.setDrinkValue(DrinkValue.valueOf(drink.getValue()));
-            } catch (ImpossibleToCalculateTarget ignored) {
+                testCase.setDrinkValue(DrinkValue.valueOf(drink.value()));
+            } catch (ImpossibleToCalculateTargetException ignored) {
 
             }
         });

@@ -19,7 +19,7 @@ public class ViewPrettyVariablesUtils {
                 .filter(variable -> context.exists(variable.name()))
                 .map(alcoholVariable -> {
                     Variable variable = context.get(alcoholVariable.name());
-                    Function<String, String> variableValueConverter = AlcoholVariable.valueOf(variable.getName())
+                    Function<String, String> variableValueConverter = AlcoholVariable.valueOf(variable.name())
                             .getConverter();
                     return prepareVariableString(variable, variableValueConverter);
                 })
@@ -29,8 +29,8 @@ public class ViewPrettyVariablesUtils {
     public static String prepareVariableString(Variable variable, Function<String, String> converter) {
         return String.format(
                 VARIABLE_PRETTY_TEMPLATE,
-                AlcoholVariable.valueOf(variable.getName()).getName(),
-                converter.apply(variable.getValue())
+                AlcoholVariable.valueOf(variable.name()).getName(),
+                converter.apply(variable.value())
         );
     }
 }

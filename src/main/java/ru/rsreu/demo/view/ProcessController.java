@@ -14,7 +14,7 @@ import ru.rsreu.demo.view.utils.ViewPrettyVariablesUtils;
 import ru.rsreu.expert.system.Engine;
 import ru.rsreu.expert.system.data.Context;
 import ru.rsreu.expert.system.data.Variable;
-import ru.rsreu.expert.system.exception.ImpossibleToCalculateTarget;
+import ru.rsreu.expert.system.exception.ImpossibleToCalculateTargetException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class ProcessController {
         try {
             Variable drink = engine.process(prepareInputVariables(input), rules(), AlcoholVariable.DRINK.name());
             resultDto = prepareResultDto(context, drink);
-        } catch (ImpossibleToCalculateTarget e) {
+        } catch (ImpossibleToCalculateTargetException e) {
             resultDto = prepareResultDto(context, null);
         }
         model.addAttribute(RESULT_MODEL_ATTRIBUTE_NAME, resultDto);
